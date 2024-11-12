@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo-VznPlay</title>
+    <style>
+        /* Estilos gerais */
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f4f9; 
+            color: #333; 
+            display: flex; 
+            justify-content: center; 
+            padding: 20px;
+        }
+        .container {
+            width: 80%; 
+            max-width: 800px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        h1 { 
+            color: #000000; 
+            text-align: center; 
+        }
+        
+        /* Estilo para o campo de entrada */
+        .input-section {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .input-section input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .input-section input[type="text"]:focus {
+            border-color: #4a90e2;
+        }
+        .input-section button {
+            padding: 12px 13px;
+            background-color: #4caf50; /* Verde */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .input-section button:hover {
+            background-color: #388e3c;
+        }
+
+        /* Estilos para os registros de faturamento */
+        .results-section {
+            margin-top: 30px;
+        }
+        .results-section h2 {
+            color: #333;
+            font-weight: bold;
+        }
+        .faturamento-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .faturamento-card h3 {
+            font-size: 1.2em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .faturamento-card h3 .ano {
+            color: #000;
+        }
+        .faturamento-card h3 .faturamento {
+            color: #4caf50;
+        }
+        .faturamento-card p {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #666;
+        }
+
+        /* Botão de reset */
+        .reset-section {
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+        }
+        .reset-section button {
+            padding: 15px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .reset-section button:hover {
+            background-color: #c0392b;
+        }
+
+        .cu{
+        font-weight: bold;
+        
+        }
+
+        /* Estilos do modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s, opacity 0.3s;
+        }
+        .modal {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .modal p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .modal button {
+            padding: 10px 15px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+        .modal button.confirm {
+            background-color: #4caf50; /* Verde */
+        }
+        .modal button.cancel {
+            background-color: #e74c3c; /* Vermelho */
+        }
+        .modal-overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .voltar{
+    margin-left: 20px;
+    text-decoration: none;
+    background-color: rgb(255, 174, 0);
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+           /* Media Query para dispositivos móveis */
+            @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+            .input-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .input-section input[type="text"],
+            .input-section button {
+                width: 100%;
+            }
+            .faturamento-card h3 {
+                font-size: 1em;
+            }
+            .faturamento-card p {
+                font-size: 0.9em;
+            }
+            .reset-section button {
+                font-size: 1em;
+                padding: 10px;
+            }
+            .modal {
+                width: 90%;
+                max-width: 350px;
+                padding: 15px;
+            }
+            .modal p {
+                font-size: 1em;
+            }
+            .modal button {
+                padding: 8px 12px;
+            }
+        }
+
+        .voltar{
+    margin-left: 0px;
+    text-decoration: none;
+    background-color: rgb(255, 174, 0);
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Controle de Faturamento Anual</h1>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <label class="cu" for="faturamento">FATURAMENTO:</label>
+            <input type="text" id="faturamento" placeholder="Digite o faturamento">
+            <button id="validarAno">VALIDAR ANO</button>
+            <a class="voltar" href="../index.html">VOLTAR</a>
+        </div> <br> <br>
+
+        <!-- Results Section -->
+        <div class="results-section">
+            <h2>REGISTRO DE FATURAMENTO</h2>
+            <div id="faturamentoList"></div>
+        </div>
+
+        <!-- Reset Button -->
+        <div class="reset-section" id="resetarSection">
+            <button id="resetar">Resetar Faturamento</button>
+        </div>
+    </div>
+
+    <!-- Modais de Notificação -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <p>Limite de 10 anos atingido! Resete o faturamento para continuar.</p>
+            <button onclick="fecharModal()" class="confirm">OK</button>
+        </div>
+    </div>
+    <div class="modal-overlay" id="confirmResetModal">
+        <div class="modal">
+            <p>Tem certeza de que deseja resetar o faturamento?</p>
+            <button onclick="confirmarReset()" class="confirm">SIM</button>
+            <button onclick="fecharConfirmModal()" class="cancel">NÃO</button>
+        </div>
+    </div>
+
+    <script>
+        const faturamentoInput = document.getElementById("faturamento");
+        const validarAnoButton = document.getElementById("validarAno");
+        const faturamentoList = document.getElementById("faturamentoList");
+        const resetarButton = document.getElementById("resetar");
+        const resetarSection = document.getElementById("resetarSection");
+        const modalOverlay = document.getElementById("modalOverlay");
+        const confirmResetModal = document.getElementById("confirmResetModal");
+
+        let faturamentoAnual = JSON.parse(localStorage.getItem("faturamentoAnual")) || [];
+
+        function atualizarLista() {
+            faturamentoList.innerHTML = "";
+            faturamentoAnual.forEach(item => {
+                const faturamentoCard = document.createElement("div");
+                faturamentoCard.classList.add("faturamento-card");
+                faturamentoCard.innerHTML = `
+                    <h3><span class="ano">ANO: ${item.ano}</span> - <span class="faturamento">FATURAMENTO: R$${item.valor}</span></h3>
+                    <p>Data de Adição: ${item.data}</p>
+                `;
+                faturamentoList.appendChild(faturamentoCard);
+            });
+            if (faturamentoAnual.length >= 10) {
+                resetarSection.style.display = "block";
+            }
+        }
+
+        faturamentoInput.addEventListener("input", () => {
+            let valor = faturamentoInput.value.replace(/\D/g, "");
+            valor = new Intl.NumberFormat("pt-BR", { style: "decimal", minimumFractionDigits: 2 }).format(valor / 100);
+            faturamentoInput.value = valor;
+        });
+
+        faturamentoInput.addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                validarAnoButton.click();
+            }
+        });
+
+        validarAnoButton.addEventListener("click", () => {
+            const valor = faturamentoInput.value.replace(/\./g, "").replace(",", ".");
+            const anoAtual = new Date().getFullYear();
+            const dataAtual = new Date().toLocaleDateString("pt-BR");
+
+            if (valor && faturamentoAnual.length < 10) {
+                faturamentoAnual.push({ ano: anoAtual, valor, data: dataAtual });
+                localStorage.setItem("faturamentoAnual", JSON.stringify(faturamentoAnual));
+                atualizarLista();
+                faturamentoInput.value = "";
+            } else if (faturamentoAnual.length >= 10) {
+                modalOverlay.classList.add("show");
+            }
+        });
+
+        resetarButton.addEventListener("click", () => {
+            confirmResetModal.classList.add("show");
+        });
+
+        function fecharModal() {
+            modalOverlay.classList.remove("show");
+        }
+
+        function fecharConfirmModal() {
+            confirmResetModal.classList.remove("show");
+        }
+
+        function confirmarReset() {
+            faturamentoAnual = [];
+            localStorage.removeItem("faturamentoAnual");
+            atualizarLista();
+            resetarSection.style.display = "none";
+            confirmResetModal.classList.remove("show");
+        }
+
+        atualizarLista();
+    </script>
+</body>
+</html>

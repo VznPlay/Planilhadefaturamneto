@@ -21,20 +21,61 @@
 
 </head>
 <body>
+
+
     <div class="container">
-        <h1>Organizador de Contas Mensal</h1>
+
+        <div class="catalogo">
+            <div class="section">
+                <a href="https://vznplay.vercel.app/facilitador/facilita.html" target="_blank">
+                    <img id="sup" src="facilitador.png" alt="Ícone Sugestão" class="icon">
+                    FACILITADOR
+                </a>
+            </div>
+            <div class="section">
+                <a href="https://gerenciador-seven.vercel.app" target="_blank">
+                    <img id="sup" src="gerenciador.png" alt="Ícone Facilitador" class="icon">
+                    Gerenciador
+                </a>
+            </div>
+
+            <div class="section">
+                <a href="https://macs-clientes.vercel.app" target="_blank">
+                    <img id="macs" src="org_macs_apps.png" alt="Ícone Organização" class="icon"> <br>
+                    Org. Macs
+                </a>
+            </div>
+            <div class="section">
+                <a href="https://t.me/antipapatesteiptvbot" target="_blank">
+                    <img id="pac-man" src="papa_teste.png" alt="Ícone Papa Teste" class="icon"> <br>
+                    Papa teste
+                </a>
+            </div>
+
+            <div class="section">
+                <a href="https://sistema-sorteio.vercel.app" target="_blank">
+                    <img id="suts" src="sorteio.png" alt="Ícone Gerenciador" class="icon">
+                    Sorteio
+                </a>
+            </div>
+        </div>
+        <br>
+
+
+        <h1>FATURAMENTO MENSAL</h1>
         <div class="input-section">
-            <label for="daily-value">Valor do Dia (R$):</label>
+            <label for="daily-value">GANHOS DO DIA:</label>
             <input type="number" id="daily-value" placeholder="Insira o valor">
-            <button onclick="addDailyValue()">Adicionar Valor</button>
+            <button onclick="addDailyValue()">ADICIONAR VALOR</button>
         </div>
         <div class="month-section">
             <h2 id="month-title">Mês Atual</h2>
             <div id="weekly-display"></div>
-            <button onclick="finalizeMonth()">Finalizar Mês</button>
+            <button onclick="finalizeMonth()">FINALIZAR MÊS</button>
         </div>
-        <div id="monthly-summary"></div> <br> <br>
-        <button onclick="calculateAnnualTotal()">Faturamento Anual</button>
+        <div id="monthly-summary"></div> <br>
+        <button onclick="calculateAnnualTotal()">FATURAMENTO ANUAL</button>
+        <a class="voltar" href="VALORPORANO/index.html">VALOR POR ANO</a>
         <div id="annual-summary" class="hidden">
             <p id="annual-total"></p>
             <button id="reset-button" onclick="resetAllData()">RESETAR</button>
