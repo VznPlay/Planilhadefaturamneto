@@ -3,9 +3,9 @@ let currentWeek = 1;
 let currentDayIndex = 0;
 let monthCounter = 1;
 let monthlyTotals = [];
-let monthlySummaries = [];  // Array para armazenar os resumos mensais
+let monthlySummaries = []; // Array para armazenar os resumos mensais
 
-const MAX_WEEKS = 4;
+const MAX_WEEKS = 5; // Modificado para 5 semanas, onde a última será a "Extra"
 const daysOfWeek = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
 const monthNames = [
     "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
@@ -50,7 +50,7 @@ function addDailyValue() {
             weekDiv = document.createElement('div');
             weekDiv.id = `week-${currentWeek}`;
             weekDiv.className = 'week';
-            weekDiv.innerHTML = `<strong>Semana ${currentWeek}</strong>`;
+            weekDiv.innerHTML = `<strong>${currentWeek === 5 ? 'Extra' : 'Semana ' + currentWeek}</strong>`;
             document.getElementById('weekly-display').appendChild(weekDiv);
         }
 
@@ -154,7 +154,7 @@ function updatePage() {
             weekDiv = document.createElement('div');
             weekDiv.id = `week-${weekNum}`;
             weekDiv.className = 'week';
-            weekDiv.innerHTML = `<strong>Semana ${weekNum}</strong>`;
+            weekDiv.innerHTML = `<strong>${weekNum === 5 ? 'Extra' : 'Semana ' + weekNum}</strong>`;
             document.getElementById('weekly-display').appendChild(weekDiv);
         }
         const dayDiv = document.createElement('div');
@@ -168,3 +168,5 @@ function updatePage() {
         document.getElementById('monthly-summary').appendChild(monthSummaryDiv);
     });
 }
+
+
