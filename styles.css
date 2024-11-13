@@ -166,8 +166,16 @@ a{
     padding: 10px;
     border-radius: 5px;
 }
+#week-1, #week-2, #week-3, #week-4, #week-5{
+    margin-bottom: 13px;
+}
+#week-5{
+    margin-bottom: 20px;
+}
 
-
+label{
+    margin-top: 10px;
+}
 
 /* CODIGO ACIMA E DOS AQUADRADOS DE OUTROS APPS*/
 

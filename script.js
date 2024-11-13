@@ -8,7 +8,7 @@ let monthlySummaries = [];
 const MAX_WEEKS = 5;
 
 const monthNames = [
-    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    "Janeiro", "Fevereiro", "Março", "ABRIL", "Maio", "Junho",
     "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
 
@@ -58,7 +58,7 @@ function addDailyValue() {
             weekDiv = document.createElement('div');
             weekDiv.id = `week-${currentWeek}`;
             weekDiv.className = 'week';
-            weekDiv.innerHTML = `<strong>${currentWeek === 5 ? 'Extra' : 'Semana ' + currentWeek}</strong>`;
+            weekDiv.innerHTML = `<strong>${currentWeek === 5 ? 'Extra' : 'SEMANA <br> ' + currentWeek}</strong>`;
             document.getElementById('weekly-display').appendChild(weekDiv);
         }
 
@@ -115,7 +115,7 @@ function finalizeMonth() {
 function calculateAnnualTotal() {
     const annualTotal = monthlyTotals.reduce((sum, value) => sum + value, 0);
     document.getElementById('annual-summary').classList.remove('hidden');
-    document.getElementById('annual-total').textContent = `Faturamento Anual: R$ ${annualTotal.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+    document.getElementById('annual-total').textContent = `FATURAMENTO ANUAL: R$ ${annualTotal.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
 }
 
 function resetAllData() {
@@ -162,7 +162,7 @@ function updatePage() {
             weekDiv = document.createElement('div');
             weekDiv.id = `week-${weekNum}`;
             weekDiv.className = 'week';
-            weekDiv.innerHTML = `<strong>${weekNum === 5 ? 'Extra' : 'Semana ' + weekNum}</strong>`;
+            weekDiv.innerHTML = `<strong>${weekNum === 5 ? 'EXTRA' : 'SEMANA >> ' + weekNum}<br> </strong> <br>`;
             document.getElementById('weekly-display').appendChild(weekDiv);
         }
         const dayDiv = document.createElement('div');
