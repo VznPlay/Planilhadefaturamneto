@@ -1,14 +1,14 @@
 let dailyValues = [];
 let currentWeek = 1;
 let currentDayIndex = 0;
-let monthCounter = 1;
+let monthCounter = new Date().getMonth() + 1; // Inicia com o mês atual do sistema
 let monthlyTotals = [];
 let monthlySummaries = [];
 
 const MAX_WEEKS = 5;
 
 const monthNames = [
-    "Janeiro", "Fevereiro", "Março", "ABRIL", "Maio", "Junho",
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
     "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         dailyValues = savedData.dailyValues || [];
         monthlyTotals = savedData.monthlyTotals || [];
         monthlySummaries = savedData.monthlySummaries || [];
-        monthCounter = savedData.monthCounter || 1;
+        monthCounter = savedData.monthCounter || monthCounter; // Mantém o mês salvo ou usa o mês atual
         currentWeek = savedData.currentWeek || 1;
         currentDayIndex = savedData.currentDayIndex || 0;
         updatePage();
@@ -58,7 +58,7 @@ function addDailyValue() {
             weekDiv = document.createElement('div');
             weekDiv.id = `week-${currentWeek}`;
             weekDiv.className = 'week';
-            weekDiv.innerHTML = `<strong>${currentWeek === 5 ? 'Extra' : 'SEMANA <br> ' + currentWeek}</strong>`;
+            weekDiv.innerHTML = `<strong>${currentWeek === 5 ? 'Extra' : `SEMANA >> ${String(currentWeek).padStart(2, '0')}`}</strong>`; // Modificação para adicionar "0"
             document.getElementById('weekly-display').appendChild(weekDiv);
         }
 
@@ -125,13 +125,13 @@ function resetAllData() {
         monthlySummaries = [];
         currentWeek = 1;
         currentDayIndex = 0;
-        monthCounter = 1;
+        monthCounter = new Date().getMonth() + 1; // Reinicia no mês atual do sistema
 
         document.getElementById('weekly-display').innerHTML = '';
         document.getElementById('monthly-summary').innerHTML = '';
         document.getElementById('annual-summary').classList.add('hidden');
         document.getElementById('annual-total').textContent = '';
-        document.getElementById('month-title').textContent = `Mês de ${monthNames[0]}`;
+        document.getElementById('month-title').textContent = `Mês de ${monthNames[monthCounter - 1]}`;
 
         saveData();
     }
@@ -162,7 +162,7 @@ function updatePage() {
             weekDiv = document.createElement('div');
             weekDiv.id = `week-${weekNum}`;
             weekDiv.className = 'week';
-            weekDiv.innerHTML = `<strong>${weekNum === 5 ? 'EXTRA' : 'SEMANA >> ' + weekNum}<br> </strong> <br>`;
+            weekDiv.innerHTML = `<strong>${weekNum === 5 ? 'EXTRA' : `SEMANA >> ${String(weekNum).padStart(2, '0')}`}</strong><br>`; // Modificação para adicionar "0"
             document.getElementById('weekly-display').appendChild(weekDiv);
         }
         const dayDiv = document.createElement('div');
