@@ -58,7 +58,7 @@ function addDailyValue() {
             weekDiv = document.createElement('div');
             weekDiv.id = `week-${currentWeek}`;
             weekDiv.className = 'week';
-            weekDiv.innerHTML = `<strong>${currentWeek === 5 ? 'Extra' : `SEMANA >> ${String(currentWeek).padStart(2, '0')}`}</strong>`; // Modificação para adicionar "0"
+            weekDiv.innerHTML = `<strong>${currentWeek === 5 ? 'EXTRA' : `SEMANA >> ${String(currentWeek).padStart(2, '0')}`}</strong>`; // Modificação para adicionar "0"
             document.getElementById('weekly-display').appendChild(weekDiv);
         }
 
@@ -162,7 +162,7 @@ function updatePage() {
             weekDiv = document.createElement('div');
             weekDiv.id = `week-${weekNum}`;
             weekDiv.className = 'week';
-            weekDiv.innerHTML = `<strong>${weekNum === 5 ? 'EXTRA' : `SEMANA >> ${String(weekNum).padStart(2, '0')}`}</strong><br>`; // Modificação para adicionar "0"
+            weekDiv.innerHTML = `<strong>${weekNum === 5 ? 'EXTRA' : `SEMANA >> ${String(weekNum).padStart(2, '0')}`}<br></strong><br>`; // Modificação para adicionar "0"
             document.getElementById('weekly-display').appendChild(weekDiv);
         }
         const dayDiv = document.createElement('div');
